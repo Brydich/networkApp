@@ -1,0 +1,30 @@
+@import "../assets/mixins";
+
+.Navigation-component {
+  min-width: 250px;
+  background-color: #959595;
+}
+.navigation__list {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+.navigation__item {
+  display: block;
+  &:not(:last-child) {
+    margin-bottom: 20px;
+  }
+}
+.navigation__link {
+  display: inline-block;
+  color: black;
+  @include adaptiv-font(40, 24);
+  @media (hover: hover) {
+    transition: all 0.2s ease;
+      &:hover {
+        color: rebeccapurple;
+      }
+  }
+}

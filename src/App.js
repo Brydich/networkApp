@@ -1,7 +1,8 @@
 import React from "react";
-import Chat from "./chat/chat";
-import Navigation from "./Navigation";
-import './app.scss'
+import Chat from "./chat/Chat";
+import Navigation from "./navigation/Navigation";
+import './assets/null.scss'
+import './App.scss'
 
 function App(props) {
     return (
