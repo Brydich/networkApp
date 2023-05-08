@@ -1,11 +1,15 @@
-function App(props) {
-  return (
-      <button onClick={click}>Click on me</button>
-  );
-}
+import React from "react";
+import Chat from "./chat/chat";
+import Navigation from "./Navigation";
+import './app.scss'
 
-function click () {
-    alert("Click :)")
+function App(props) {
+    return (
+        <div className={"App-component"}>
+            <Navigation />
+            <Chat/>
+        </div>
+    )
 }
 
 export default App;
