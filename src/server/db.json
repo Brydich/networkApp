@@ -1,0 +1,62 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Me",
+      "chats": [
+        {
+          "companion": "He",
+          "messages": [
+            {
+              "sender": "Me",
+              "receiver": "He",
+              "text": "I wrote you yesterday. Do you remember?)",
+              "date": "01.12.2020 12:00"
+            },
+            {
+              "sender": "He",
+              "receiver": "Me",
+              "text": "Yes, I do",
+              "date": "02.12.2021 12:15"
+            },
+            {
+              "sender": "Me",
+              "receiver": "He",
+              "text": "I wrote you yesterday. Do you remember?)",
+              "date": "01.12.2022 12:00"
+            },
+            {
+              "sender": "He",
+              "receiver": "Me",
+              "text": "Yes, I do",
+              "date": "02.12.2019 12:15"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "He",
+      "chats": [
+        {
+          "companion": "Me",
+          "messages": [
+            {
+              "sender": "Me",
+              "receiver": "He",
+              "text": "I wrote you yesterday. Do you remember?)",
+              "date": "01.12.2020 12:00"
+            },
+            {
+              "sender": "He",
+              "receiver": "Me",
+              "text": "Yes, I do",
+              "date": "02.12.2021 12:15"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

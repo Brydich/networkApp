@@ -1,4 +1,4 @@
-@import "variables";
+@import "./variables";
 
 // @include adaptiv-font(40, 24);
 @mixin adaptiv-font($pcSize, $mobSize) {
