@@ -1,0 +1,59 @@
+.chat__item {
+  position: relative;
+
+  &:not(:last-child) {
+    margin-bottom: 25px;
+  }
+}
+
+.chat__item-me {
+  .chat__person {
+    right: auto;
+    left: calc(100% + 20px);
+  }
+
+  .chat__message {
+    background-color: rgba(12, 85, 255, 0.18);
+  }
+}
+
+.chat__person {
+  position: absolute;
+  z-index: 1;
+  display: block;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+  right: calc(100% + 20px);
+  top: 0;
+  box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.09);
+
+  img {
+    object-fit: cover;
+  }
+}
+
+.chat__message {
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  background-color: #ededed;
+  padding: 15px 25px 15px 20px;
+}
+
+.chat__person-info {
+  font-size: 21px;
+  margin-bottom: 5px;
+  color: #0c55ff;
+}
+
+.chat__text {
+  font-size: 18px;
+  line-height: 120%;
+
+  p {
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+  }
+}

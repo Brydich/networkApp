@@ -3,58 +3,114 @@
     {
       "id": 1,
       "name": "Me",
+      "lastName": "Phoenix",
+      "photo": "./img/my-avatar.jpg",
       "chats": [
         {
-          "companion": "He",
-          "messages": [
-            {
-              "sender": "Me",
-              "receiver": "He",
-              "text": "I wrote you yesterday. Do you remember?)",
-              "date": "01.12.2020 12:00"
-            },
-            {
-              "sender": "He",
-              "receiver": "Me",
-              "text": "Yes, I do",
-              "date": "02.12.2021 12:15"
-            },
-            {
-              "sender": "Me",
-              "receiver": "He",
-              "text": "I wrote you yesterday. Do you remember?)",
-              "date": "01.12.2022 12:00"
-            },
-            {
-              "sender": "He",
-              "receiver": "Me",
-              "text": "Yes, I do",
-              "date": "02.12.2019 12:15"
-            }
-          ]
+          "companionId": 2,
+          "chatId": 1
+        },
+        {
+          "companionId": 4,
+          "chatId": 3
+        },
+        {
+          "companionId": 3,
+          "chatId": 2
         }
       ]
     },
     {
       "id": 2,
       "name": "He",
+      "lastName": "...",
+      "photo": "./img/stock.jpg",
       "chats": [
         {
-          "companion": "Me",
-          "messages": [
-            {
-              "sender": "Me",
-              "receiver": "He",
-              "text": "I wrote you yesterday. Do you remember?)",
-              "date": "01.12.2020 12:00"
-            },
-            {
-              "sender": "He",
-              "receiver": "Me",
-              "text": "Yes, I do",
-              "date": "02.12.2021 12:15"
-            }
-          ]
+          "companionId": 1,
+          "chatId": 1
+        }
+      ]
+    }
+  ],
+  "chats": [
+    {
+      "id": 1,
+      "userOneId": 1,
+      "userTwoId": 2,
+      "messages": [
+        {
+          "sender": 1,
+          "receiver": 2,
+          "text": "May be something other?",
+          "date": "01.12.2020 12:00"
+        },
+        {
+          "sender": 2,
+          "receiver": 1,
+          "text": "Hello?",
+          "date": "01.12.2021 12:00"
+        },
+        {
+          "sender": 1,
+          "receiver": 2,
+          "text": "Hi, bro!How are you?",
+          "date": "01.12.2022 12:00"
+        },
+        {
+          "sender": 2,
+          "receiver": 1,
+          "text": "I am CRAZY!!!",
+          "date": "01.12.2019 12:00"
+        },
+        {
+          "sender": 1,
+          "receiver": 2,
+          "text": "dasd",
+          "date": "2023-05-13T13:30:11.480Z"
+        },
+        {
+          "sender": 1,
+          "receiver": 2,
+          "text": "New message",
+          "date": "2023-05-13T13:30:41.813Z"
+        },
+        {
+          "sender": 1,
+          "receiver": 2,
+          "text": "!!!",
+          "date": "2023-05-13T13:31:30.285Z"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "userOneId": 1,
+      "userTwoId": 3,
+      "messages": [
+        {
+          "sender": 1,
+          "receiver": 3,
+          "text": "May be something other?",
+          "date": "01.12.2020 12:00"
+        },
+        {
+          "sender": 3,
+          "receiver": 1,
+          "text": "Hello?",
+          "date": "01.12.2021 12:00"
+        },
+        {
+          "sender": 1,
+          "receiver": 3,
+          "text": "Hi, bro!How are you?",
+          "date": "01.12.2022 12:00"
+        },
+        {
+          "sender": 3,
+          "receiver": 1,
+          "text": "I am CRAZY!!!",
+          "date": "01.12.2019 12:00"
         }
       ]
     }

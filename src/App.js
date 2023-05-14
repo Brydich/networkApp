@@ -9,73 +9,49 @@ function App(props) {
     useEffect(() => {
         firstLoadApp(setUsers);
     }, []);
-    useEffect(() => {
-        //updateUsers(users);
-    }, [users]);
-    updateUsers(users);
     return (
         <div className={"App-component"}>
             <Navigation/>
-            <Chat/>
+            <Chat users={users}/>
         </div>
     )
 }
 
-function updateUsers(users) {
-    if (users.length < 1) return;
-    console.log(users[0].chats[0].messages);
-    users[0].chats[0].messages.forEach(message => {
-        console.log(message.date);
+/*function sortByDateLastMessage(users) {
+    users.map(user => {
+        if (!hasChats(user)) return user;
+        user.chats.forEach(chat => {
+            // Parse date from string to object Date
+            chat.messages.forEach(message => {
+                let number = Date.parse(message.date)
+                message.date = new Date(number);
+            });
+            // Sort messages by next rule (later at the end, early at the beginning)
+            chat.messages.sort((a, b) => {
+                return b.date - a.date
+            });
+        });
+        // Sort chats by next rule (later at the end, early at the beginning)
+        user.chats.sort((a, b) => {
+            return b.messages[0].date - a.messages[0].date;
+        });
     });
-    //users.sort(sortByDate);
+    return users;
+}*/
 
-    sortByDate(users[0], users[1]);
-    users[0].chats[0].messages.forEach(message => {
-        console.log(message.date.getFullYear());
-    });
-    //users.sort(sortByDate);
+// Return index of chat if users have dialog
 
-    /*console.log(users);
-    console.log(typeof users[0]?.chats[0]?.messages[0].date);
-    let parseDate = Date.parse(users[0]?.chats[0]?.messages[0].date);
-    let date = new Date(parseDate);
-    console.log(date.getMonth());
-    console.log(typeof date);*/
-    //.chats.messages.date
-    //users.sort(sortByDate);
-}
-
-function sortByDate(userOne, userTwo) {
-    let indexOfChat = hasDialog(userOne, userTwo);
-    if (indexOfChat < 0) {
-        return false;
-    }
-    userOne.chats[indexOfChat].messages.forEach(message => {
-        let number = Date.parse(message.date)
-        message.date = new Date(number);
-    });
-    userOne.chats[indexOfChat].messages.sort((a, b) => b.date - a.date);
-}
-
-function hasDialog(userOne, userTwo) {
-    if (!hasChats(userOne)) return false;
-    if (!hasChats(userTwo)) return false;
-    for (let i = 0; i < userOne.chats.length; i++) {
-        if (userOne.chats[i].companion === userTwo.name) {
-            return i;
-        }
-    }
-    return -1;
-}
-
+// Return true if user has any chat
 function hasChats(user) {
+    if(Object.keys(user).length === 0) return false;
+    if(user.chats === undefined) return false;
     return user.chats.length > 0;
 }
 
 function firstLoadApp(setUsersFunc) {
-    let url = 'http://localhost:3001/db';
-    getUsers(url).then(response => {
-        setUsersFunc(response.users);
+    getUsers('http://localhost:3001/users').then(response => {
+        //let users = sortByDateLastMessage(response.users);
+        setUsersFunc(response);
     }).catch(ex => {
         console.log(ex)
     });
@@ -87,7 +63,8 @@ async function getUsers(url) {
         if (response.ok) {
             return response.json();
         } else {
-            console.log("Unsuccessful");
+            // Выбросить ошибку!
+            console.log("Can't get users from database");
         }
     }).then((response) => {
         users = response;
@@ -96,32 +73,5 @@ async function getUsers(url) {
     });
     return users;
 }
-
-/*function showUsers (users) {
-    console.log(users);
-}
-
-function getUsers(url, amount = 10) {
-    let users;
-    return getDB(url).then(resolve => {
-        users = resolve.users;
-        return users;
-    }).catch(ex=>{console.log(ex)});
-}
-
-function getDB(url) {
-    let result;
-    return fetch(url, {
-        method: "GET"
-    }).then(resolve=>{
-        if(resolve.ok) {
-            result = resolve.json();
-        } else {
-            result = resolve.status;
-            console.log("Mistake! DataBase wasn't received. Status = " + result);
-        }
-        return result;
-    }).catch(ex=>{console.log(ex)});
-}*/
 
 export default App;
