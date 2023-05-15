@@ -1,7 +1,7 @@
 import React from 'react';
 import './Navigation.scss';
 
-function Navigation(props) {
+function Navigation() {
     return (
         <nav className={"Navigation-component navigation"}>
             <ul className={"navigation__list"}>

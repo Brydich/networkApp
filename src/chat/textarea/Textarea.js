@@ -1,8 +1,39 @@
 import React, {useState} from 'react';
 import './Textarea.scss';
+import {useDispatch, useSelector} from "react-redux";
+import {addMessage} from "../../assets/store/messagesReduceer";
 
-const Textarea = (props) => {
+const Textarea = () => {
+    let dispatch = useDispatch();
     let [message, setMessage] = useState('');
+    let messages = useSelector(store=>store.messagesReducer.messages);
+
+    function handleChange(event) {
+        setMessage(event.target.value);
+        console.log(event.target.value);
+    }
+    function SendMessage() {
+        messages.unshift({
+            "sender": 1,
+            "receiver": 2,
+            "text": message,
+            "date": new Date()
+        });
+
+        fetch("http://localhost:3001/chats/1", {
+            method: "PATCH",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({messages})
+        }).then(resolve => {
+            dispatch(addMessage(messages[0].text));
+            return resolve.json();
+        }).then(jsonChat=>{
+            console.log(jsonChat)
+        }).catch(ex => console.log(ex));
+    }
+
     return (
         <div className={"Textarea-component chat__message-area"}>
             <textarea
@@ -10,30 +41,17 @@ const Textarea = (props) => {
                 className={"chat-textarea"}
                 placeholder={"Message"}
                 value={message}
-                onChange={(event) => {
-                    handleChange(setMessage, event)
-                }}
+                onChange={handleChange}
             >
             </textarea>
             <button
                 className="chat__message-area_button"
-                onClick={(event) => {
-                    sendMessage(message, props.user, props.companion, event)
-                        .then(resolve => {
-                                setMessage(message);
-                            }
-                        ).catch(ex => console.log(ex))
-                }}
+                onClick={SendMessage}
             >Send message
             </button>
         </div>
     );
 };
-
-function handleChange(setMessage, event) {
-    setMessage(event.target.value);
-    console.log(event.target.value);
-}
 
 async function sendMessage(message, user, companion, event) {
     let chat;

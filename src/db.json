@@ -42,32 +42,74 @@
         {
           "sender": 1,
           "receiver": 2,
-          "text": "May be something other?",
-          "date": "01.12.2020 12:00"
-        },
-        {
-          "sender": 2,
-          "receiver": 1,
-          "text": "Hello?",
-          "date": "01.12.2021 12:00"
+          "text": "das",
+          "date": "2023-05-15T15:30:54.863Z"
         },
         {
           "sender": 1,
           "receiver": 2,
-          "text": "Hi, bro!How are you?",
-          "date": "01.12.2022 12:00"
+          "text": "das",
+          "date": "2023-05-15T15:28:39.488Z"
         },
         {
-          "sender": 2,
-          "receiver": 1,
-          "text": "I am CRAZY!!!",
-          "date": "01.12.2019 12:00"
+          "sender": 1,
+          "receiver": 2,
+          "text": "фывфы",
+          "date": "2023-05-15T15:19:13.979Z"
+        },
+        {
+          "sender": 1,
+          "receiver": 2,
+          "text": "fsd",
+          "date": "2023-05-15T15:17:05.944Z"
+        },
+        {
+          "sender": 1,
+          "receiver": 2,
+          "text": "New message",
+          "date": "2023-05-15T15:16:35.424Z"
+        },
+        {
+          "sender": 1,
+          "receiver": 2,
+          "text": "das",
+          "date": "2023-05-15T15:16:00.086Z"
+        },
+        {
+          "sender": 1,
+          "receiver": 2,
+          "text": "3434",
+          "date": "2023-05-15T15:15:39.874Z"
         },
         {
           "sender": 1,
           "receiver": 2,
           "text": "Nice, thank you",
           "date": "2023-05-14T12:17:17.434Z"
+        },
+        {
+          "sender": 1,
+          "receiver": 2,
+          "text": "Hi, bro!How are you?",
+          "date": "2022-01-12T09:00:00.000Z"
+        },
+        {
+          "sender": 2,
+          "receiver": 1,
+          "text": "Hello?",
+          "date": "2021-01-12T09:00:00.000Z"
+        },
+        {
+          "sender": 1,
+          "receiver": 2,
+          "text": "May be something other?",
+          "date": "2020-01-12T09:00:00.000Z"
+        },
+        {
+          "sender": 2,
+          "receiver": 1,
+          "text": "I am CRAZY!!!",
+          "date": "2019-01-12T09:00:00.000Z"
         }
       ]
     },
