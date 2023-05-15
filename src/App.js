@@ -3,12 +3,28 @@ import Chat from "./chat/Chat";
 import Navigation from "./navigation/Navigation";
 import './assets/styles/null.scss'
 import './App.scss'
+import {createStore} from "redux";
+import {useDispatch, useSelector} from "react-redux";
+import {addUserAction, removeUserAction} from "./assets/store/usersReducer";
 
 function App(props) {
+    // Находим диспетчера (позволяет изменять состояние)
+    let dispatch = useDispatch();
+    // Получаем состояние при помощи хука useSelector(), которая принимает актуальное состояние
+    let redUsers = useSelector(store => store.usersReducer.users);
+    console.log(redUsers);
+
     let [users, setUsers] = React.useState([]);
+
     useEffect(() => {
+        // Вызываем обновление состояния в redux, которая принимает действие (action)
+        dispatch(addUserAction('MEEEEE'));
         firstLoadApp(setUsers);
     }, []);
+    useEffect(()=>{
+        dispatch(removeUserAction('MEEEEE'));
+    }, [users]);
+
     return (
         <div className={"App-component"}>
             <Navigation/>
@@ -43,8 +59,8 @@ function App(props) {
 
 // Return true if user has any chat
 function hasChats(user) {
-    if(Object.keys(user).length === 0) return false;
-    if(user.chats === undefined) return false;
+    if (Object.keys(user).length === 0) return false;
+    if (user.chats === undefined) return false;
     return user.chats.length > 0;
 }
 

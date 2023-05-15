@@ -21,108 +21,6 @@ function Chat(props) {
                 <div className="chat__communication">
                     <ul className="chat__list">
                         <Message user={user} companion={companion}/>
-                        {/*<li className="chat__item">
-                            <div className="chat__person">
-                                <img src={"./img/person-image.png"} alt=""/>
-                            </div>
-                            <div className="chat__message">
-                                <div className="chat__person-info">
-                                    <p>Lorem ipsum dolor</p>
-                                </div>
-                                <div className="chat__text">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores consequatur
-                                        esse
-                                        facere quo? Animi commodi ipsum molestias, nam perferendis quaerat!</p>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores consequatur
-                                        esse
-                                        facere quo? Animi commodi ipsum molestias, nam perferendis quaerat!</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li className="chat__item">
-                            <div className="chat__person">
-                                <img src={"./img/person-image.png"} alt=""/>
-                            </div>
-                            <div className="chat__message">
-                                <div className="chat__person-info">
-                                    <p>Lorem ipsum dolor</p>
-                                </div>
-                                <div className="chat__text">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores consequatur
-                                        esse
-                                        facere quo? Animi commodi ipsum molestias, nam perferendis quaerat!</p>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores consequatur
-                                        esse
-                                        facere quo? Animi commodi ipsum molestias, nam perferendis quaerat!</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li className="chat__item">
-                            <div className="chat__person">
-                                <img src={"./img/person-image.png"} alt=""/>
-                            </div>
-                            <div className="chat__message">
-                                <div className="chat__person-info">
-                                    <p>Lorem ipsum dolor</p>
-                                </div>
-                                <div className="chat__text">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores consequatur
-                                        esse
-                                        facere quo? Animi commodi ipsum molestias, nam perferendis quaerat!</p>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores consequatur
-                                        esse
-                                        facere quo? Animi commodi ipsum molestias, nam perferendis quaerat!</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li className="chat__item">
-                            <div className="chat__person">
-                                <img src={"./img/person-image.png"} alt=""/>
-                            </div>
-                            <div className="chat__message">
-                                <div className="chat__person-info">
-                                    <p>Lorem ipsum dolor</p>
-                                </div>
-                                <div className="chat__text">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores consequatur
-                                        esse
-                                        facere quo? Animi commodi ipsum molestias, nam perferendis quaerat!</p>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores consequatur
-                                        esse
-                                        facere quo? Animi commodi ipsum molestias, nam perferendis quaerat!</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li className="chat__item chat__item-me">
-                            <div className="chat__person">
-                                <img src={"./img/person-image.png"} alt=""/>
-                            </div>
-                            <div className="chat__message">
-                                <div className="chat__text">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores consequatur
-                                        esse
-                                        facere quo? Animi commodi ipsum molestias, nam perferendis quaerat!</p>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores consequatur
-                                        esse
-                                        facere quo? Animi commodi ipsum molestias, nam perferendis quaerat!</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li className="chat__item chat__item-me">
-                            <div className="chat__person">
-                                <img src={"./img/person-image.png"} alt=""/>
-                            </div>
-                            <div className="chat__message">
-                                <div className="chat__text">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores consequatur
-                                        esse
-                                        facere quo? Animi commodi ipsum molestias, nam perferendis quaerat!</p>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores consequatur
-                                        esse
-                                        facere quo? Animi commodi ipsum molestias, nam perferendis quaerat!</p>
-                                </div>
-                            </div>
-                        </li>*/}
                     </ul>
                 </div>
                 <Textarea user={user} companion={companion}/>
@@ -139,13 +37,11 @@ function updateCompanion(users, setCompanion) {
     if (users === undefined) return;
     if (users.length < 1) return;
     setCompanion(users[1]);
-    console.log("New companion!");
 }
 function updateUser(users, setUserFunc) {
     if (users === undefined) return;
     if (users.length < 1) return;
     setUserFunc(users[0]);
-    console.log("New user!");
 }
 
 export default Chat;

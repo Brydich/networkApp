@@ -28,15 +28,23 @@ function Message(props) {
         //}
     }
 
-    console.log(user);
-    console.log(companion);
-    return <li>{updateChat(user, companion, setChat)}</li>;
+    //console.log(user);
+    //console.log(companion);
+    return newChat(chat);
 }
-
+function newChat (chat) {
+    if (chat === undefined || Object.keys(chat).length === 0) return <li></li>
+    if (chat.length === 0) return <li></li>
+    return chat.map(item=>{
+        return item
+    }).reverse();
+}
 function updateChat(user, companion, setChat) {
-    let result = getChatInfo(user, companion, setChat).then(async chat => {
-        await sortByDateLastMessage(chat.messages);
-        showMessages(user, companion, chat.messages);
+    getChatInfo(user, companion).then(async chat => {
+        if (chat === undefined) return {};
+        sortByDateLastMessage(chat.messages);
+        let chatMessages = showMessages(user, companion, chat.messages);
+        setChat(chatMessages);
     }).catch(ex => console.log(ex));
 }
 function sortByDateLastMessage(messages) {
@@ -49,7 +57,7 @@ function sortByDateLastMessage(messages) {
         return b.date - a.date
     });
 }
-async function getChatInfo(user, companion, setChat) {
+async function getChatInfo(user, companion) {
     let chatInfo = hasDialog(user, companion);
     // showMessages(user, companion, indexDialog, amI, deep = 5)
     if (!chatInfo) return;
@@ -57,13 +65,18 @@ async function getChatInfo(user, companion, setChat) {
     await fetch('http://localhost:3001/chats/1', {
         method: "GET"
     }).then(response => {
-        result = response.json();
+        if (response.ok) {
+            result = response.json();
+        } else {
+            console.log("Can't get chat");
+        }
     }).catch(ex => console.log(ex));
     return result;
 }
 
 function showMessages(user, companion, messages) {
-    let result = messages.map(message => {
+    let prevUser;
+    return messages.map(message => {
         let className;
         let nowUser;
         if (message.sender === user.id) {
@@ -73,24 +86,44 @@ function showMessages(user, companion, messages) {
             className = 'chat__item chat__item-me';
             nowUser = user;
         }
-        return (
-            <div key={Math.random()} className={className}>
-                <div className="chat__person">
-                    {getPhoto(nowUser)}
-                </div>
-                <div className="chat__message">
-                    <div className="chat__person-info">
-                        {getFullName(nowUser)}
+        if (prevUser !== nowUser.id) {
+            prevUser = nowUser.id
+            return (
+                <li key={Math.random()} className={className}>
+                    <div className="chat__person">
+                        {getPhoto(nowUser)}
                     </div>
-                    <div className="chat__text">
-                        <p>{message.text}</p>
+                    <div className="chat__message">
+                        <div className="chat__message_date">
+                            <p>{getDate(message.date)}</p>
+                        </div>
+                        <div className="chat__person-info">
+                            {getFullName(nowUser)}
+                        </div>
+                        <div className="chat__text">
+                            <p>{message.text}</p>
+                        </div>
                     </div>
-                </div>
-            </div>
-        )
+                </li>
+            )
+        } else {
+            return (
+                <li key={Math.random()} className={className}>
+                    <div className="chat__message">
+                        <div className="chat__message_date">
+                            <p>{getDate(message.date)}</p>
+                        </div>
+                        <div className="chat__person-info">
+                            {getFullName(nowUser)}
+                        </div>
+                        <div className="chat__text">
+                            <p>{message.text}</p>
+                        </div>
+                    </div>
+                </li>
+            )
+        }
     });
-    console.log(result);
-    return result;
     /*let chatInfo = hasDialog(user, companion);
     // showMessages(user, companion, indexDialog, amI, deep = 5)
     if (!chatInfo) return;
@@ -129,7 +162,9 @@ function showMessages(user, companion, messages) {
         )
     });*/
 }
-
+function getDate (date) {
+    return (date.toLocaleTimeString().slice(0,-3) + " " + date.getFullYear());
+}
 function hasDialog(user, companion) {
     if (Object.keys(user).length === 0 || Object.keys(companion).length === 0) return false;
     if (user.chats.length === 0 || companion.chats.length === 0) return false;

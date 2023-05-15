@@ -10,34 +10,40 @@ const Textarea = (props) => {
                 className={"chat-textarea"}
                 placeholder={"Message"}
                 value={message}
-                onChange={(event)=>{handleChange(setMessage, event)}}
+                onChange={(event) => {
+                    handleChange(setMessage, event)
+                }}
             >
             </textarea>
             <button
                 className="chat__message-area_button"
-                onClick={(event)=>{sendMessage(message, props.user,props.companion, event)}}
+                onClick={(event) => {
+                    sendMessage(message, props.user, props.companion, event)
+                        .then(resolve => {
+                                setMessage(message);
+                            }
+                        ).catch(ex => console.log(ex))
+                }}
             >Send message
             </button>
         </div>
     );
 };
+
 function handleChange(setMessage, event) {
     setMessage(event.target.value);
     console.log(event.target.value);
 }
 
 async function sendMessage(message, user, companion, event) {
-    console.log(message);
-    console.log(user);
-    console.log(companion);
     let chat;
-    await fetch("http://localhost:3001/chats/1",{
+    await fetch("http://localhost:3001/chats/1", {
         method: "GET"
-    }).then(response=>{
+    }).then(response => {
         return response.json();
-    }).then(response=>{
+    }).then(response => {
         chat = response;
-    }).catch(ex=>console.log(ex));
+    }).catch(ex => console.log(ex));
 
     chat.messages.push({
         "sender": 1,
@@ -46,17 +52,15 @@ async function sendMessage(message, user, companion, event) {
         "date": new Date()
     });
 
-    await fetch("http://localhost:3001/chats/1",{
+    await fetch("http://localhost:3001/chats/1", {
         method: "PATCH",
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(chat)
-    }).then(resolve=>{
+    }).then(resolve => {
         return resolve.json();
-    }).then(resolve=>{
-        console.log(resolve);
-    }).catch(ex=>console.log(ex));
+    }).catch(ex => console.log(ex));
 
     /*let url = 'http://localhost:3001/users/1';
     user.chats[0].messages.push({

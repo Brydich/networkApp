@@ -66,20 +66,8 @@
         {
           "sender": 1,
           "receiver": 2,
-          "text": "dasd",
-          "date": "2023-05-13T13:30:11.480Z"
-        },
-        {
-          "sender": 1,
-          "receiver": 2,
-          "text": "New message",
-          "date": "2023-05-13T13:30:41.813Z"
-        },
-        {
-          "sender": 1,
-          "receiver": 2,
-          "text": "!!!",
-          "date": "2023-05-13T13:31:30.285Z"
+          "text": "Nice, thank you",
+          "date": "2023-05-14T12:17:17.434Z"
         }
       ]
     },
