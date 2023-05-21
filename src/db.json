@@ -31,6 +31,15 @@
           "chatId": 1
         }
       ]
+    },
+    {
+      "name": "1",
+      "lastName": "1",
+      "email": "1",
+      "password": "1",
+      "photo": "./img/stock.jpg",
+      "chats": [],
+      "id": 3
     }
   ],
   "chats": [

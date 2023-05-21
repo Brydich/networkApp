@@ -1,7 +1,8 @@
-@import "../assets/styles/mixins";
+@import "../../../assets/styles/mixins";
 
 .Navigation-component {
   min-width: 250px;
+  min-height: 100vh;
   background-color: #959595;
 }
 .navigation__list {

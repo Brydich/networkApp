@@ -1,15 +1,17 @@
 import React, {useEffect, useState} from "react";
-import Chat from "./chat/Chat";
-import Navigation from "./navigation/Navigation";
-import './assets/styles/null.scss'
+import Chat from "./pages/chat/Chat";
+import Navigation from "./pages/navigation/Navigation";
+import '../assets/styles/null.scss'
 import './App.scss'
 import {useDispatch, useSelector} from "react-redux";
-import {addManyUserAction} from "./assets/store/usersReducer";
+import {addManyUserAction} from "../assets/store/usersReducer";
 import {Navigate, Route, Routes} from "react-router";
-import Users from "./users/users";
 import Authorization from "./auth/Authorization";
 import Login from "./auth/login/login";
 import Registration from "./auth/registration/Registration";
+import Pages from "./pages/Pages";
+import Users from "./pages/users/Users";
+import NotFound from "./pages/404 (not-found)/NotFound";
 
 function App() {
     // Находим диспетчера (позволяет изменять состояние)
@@ -23,7 +25,7 @@ function App() {
     useEffect(() => firstLoadApp(), []);
 
     function firstLoadApp() {
-        let url = 'http://localhost:3001/users';
+        /*let url = 'http://localhost:3001/users';
         fetch(url).then((response) => {
             if (response.ok) {
                 return response.json();
@@ -33,34 +35,26 @@ function App() {
             }
         }).then((jsonUsers) => {
             if (jsonUsers.length > 0) {
-                console.log(jsonUsers);
-                //setUsers(jsonUsers);
                 dispatch(addManyUserAction(jsonUsers))
             } else {
                 console.log("Don't have any user");
-                //setUsers({})
             }
         }).catch(ex => {
             console.log(ex)
-        });
+        });*/
     }
 
     return (
         <Routes>
-            <Route path={'/'} element={<Authorization />}>
-                <Route path={'login'} element={<Login />} />
-                <Route path={'reg'} element={<Registration />} />
+            <Route path={'/'} element={<Pages />}>
+                <Route path={'chat'} element={<Chat />} />
+                <Route path={'users'} element={<Users />} />
             </Route>
-
-
-            {/*<div className={'App-component'}>
-                <Navigation/>
-                <Routes>
-                    <Route path={'/'} element={<Chat/>}/>
-                    <Route path={'/chat'} element={<Chat/>}/>
-                    <Route path={'/users'} element={<Users/>}/>
-                </Routes>
-            </div>*/}
+            <Route path={'/auth'} element={<Authorization/>}>
+                <Route path={'login'} element={<Login/>}/>
+                <Route path={'reg'} element={<Registration/>}/>
+            </Route>
+            <Route path={'*'} element={<NotFound />} />
         </Routes>
     )
 }

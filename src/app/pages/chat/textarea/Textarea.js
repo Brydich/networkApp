@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import './Textarea.scss';
 import {useDispatch, useSelector} from "react-redux";
-import {addMessage} from "../../assets/store/messagesReduceer";
+import {addMessage} from "../../../../assets/store/messagesReduceer";
 
 const Textarea = () => {
     let dispatch = useDispatch();

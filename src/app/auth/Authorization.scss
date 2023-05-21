@@ -45,15 +45,15 @@
     font-size: 25px;
     border: 1px solid #000;
     border-bottom: none;
+    & .authorization-tabs__link {
+      padding: 15px;
+      color: #0c55ff;
+    }
   }
 }
 .authorization-tabs__link {
   color: #000;
   padding: 10px;
-  &.active {
-    padding: 15px;
-    color: #0c55ff;
-  }
 }
 .authorization__background {
   position: absolute;

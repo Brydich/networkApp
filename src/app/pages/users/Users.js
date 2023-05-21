@@ -1,9 +1,9 @@
 import React from 'react';
-import './users.scss';
+import './Users.scss';
 
 function Users(props) {
     return (
-        <div className={'Users-component'}>Users!</div>
+        <div>Users!!!!!!!!!!!!</div>
     );
 }
 

@@ -1,34 +1,34 @@
 import React, {useEffect, useRef, useState} from 'react';
 import './Authorization.scss';
-import {NavLink, Outlet, useNavigate} from "react-router-dom";
+import {Link, Outlet} from "react-router-dom";
 
 function Authorization(props) {
-    let [activeTab, setActiveTab] = useState('login');
+    let [activeTab, setActiveTab] = useState('');
 
     return (
         <div className={'Authorization-component authorization'}>
             <div className="authorization__body">
                 <div className="authorization__logo">
-                    <img src="./img/my-avatar.jpg" alt="" className="authorization__logo_img"/>
+                    <img src="../img/my-avatar.jpg" alt="" className="authorization__logo_img"/>
                 </div>
                 <div className="authorization__window">
                     <ul className="authorization__tabs">
                         <li onClick={()=>setActiveTab('login')}
                             className={'authorization-tabs__item' + ((activeTab==='login') ? ' _active': '')}
                         >
-                            <NavLink to={'../login'} className="authorization-tabs__link">Login</NavLink>
+                            <Link to={'login'} className="authorization-tabs__link">Login</Link>
                         </li>
                         <li onClick={()=>setActiveTab('reg')}
                             className={"authorization-tabs__item" + ((activeTab==='reg') ? ' _active': '')}
                         >
-                            <NavLink to={'../reg'} className="authorization-tabs__link">Registration</NavLink>
+                            <Link to={'reg'} className="authorization-tabs__link">Registration</Link>
                         </li>
                     </ul>
                     <Outlet />
                 </div>
             </div>
             <div className="authorization__background">
-                <img src="./img/background-form.jpg" alt="" className="authorization__background_img"/>
+                <img src="../img/background-form.jpg" alt="" className="authorization__background_img"/>
             </div>
         </div>
     );

@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import './Message.scss';
 import {useDispatch, useSelector} from "react-redux";
-import {addManyUserAction} from "../../assets/store/usersReducer";
-import {addMessage} from "../../assets/store/messagesReduceer";
+import {addManyUserAction} from "../../../../assets/store/usersReducer";
+import {addMessage} from "../../../../assets/store/messagesReduceer";
 
 function Message() {
     let dispatch = useDispatch();

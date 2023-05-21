@@ -1,0 +1,50 @@
+.Not-found-component {}
+.not-found {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  background-color: #959595;
+}
+.not-found__body {
+  width: 70%;
+  padding: 40px;
+  border-radius: 30px;
+  background-color: #e4e4e4;
+}
+.not-found__title {
+  text-align: center;
+  font-size: 40px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+.not-found__text {
+  font-size: 25px;
+  line-height: 120%;
+  margin-bottom: 20px;
+}
+.not-found__list {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.not-found__item {
+  &:not(:last-child) {
+    margin-right: 30px;
+  }
+}
+.not-found__link {
+  display: inline-block;
+  padding: 20px 40px;
+  font-size: 30px;
+  color: #000;
+  @media (hover: hover) {
+    transition: all 0.2s ease;
+      &:hover {
+        cursor: pointer;
+        color: forestgreen;
+      }
+  }
+}
