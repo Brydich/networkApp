@@ -1,15 +1,13 @@
-import React, {useEffect, useState} from "react";
+import {useEffect} from "react";
 import Chat from "./pages/chat/Chat";
-import Navigation from "./pages/navigation/Navigation";
 import '../assets/styles/null.scss'
 import './App.scss'
-import {useDispatch, useSelector} from "react-redux";
-import {addManyUserAction} from "../assets/store/usersReducer";
-import {Navigate, Route, Routes} from "react-router";
+import {useDispatch} from "react-redux";
+import {Route, Routes} from "react-router";
 import Authorization from "./auth/Authorization";
 import Login from "./auth/login/login";
 import Registration from "./auth/registration/Registration";
-import Pages from "./pages/Pages";
+import PrivatePages from "./pages/PrivatePages";
 import Users from "./pages/users/Users";
 import NotFound from "./pages/404 (not-found)/NotFound";
 
@@ -46,15 +44,15 @@ function App() {
 
     return (
         <Routes>
-            <Route path={'/'} element={<Pages />}>
-                <Route path={'chat'} element={<Chat />} />
-                <Route path={'users'} element={<Users />} />
+            <Route path={'/'} element={<PrivatePages/>}>
+                <Route path={'chat'} element={<Chat/>}/>
+                <Route path={'users'} element={<Users/>}/>
             </Route>
             <Route path={'/auth'} element={<Authorization/>}>
                 <Route path={'login'} element={<Login/>}/>
                 <Route path={'reg'} element={<Registration/>}/>
             </Route>
-            <Route path={'*'} element={<NotFound />} />
+            <Route path={'*'} element={<NotFound/>}/>
         </Routes>
     )
 }

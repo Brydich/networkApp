@@ -24,7 +24,7 @@ function Login(props) {
                 console.log("Not correct login or e-mail");
             } else {
                 console.log("user", res[0]);
-                localStorage.setItem('user', JSON.stringify(res));
+                localStorage.setItem('user', JSON.stringify(res[0]));
                 navigate('/chat');
             }
         }).catch(ex=>console.log(ex));

@@ -1,9 +1,9 @@
-import React, {useEffect, useRef, useState} from 'react';
+import {useState} from 'react';
 import './Authorization.scss';
 import {Link, Outlet} from "react-router-dom";
 
 function Authorization(props) {
-    let [activeTab, setActiveTab] = useState('');
+    let [activeTab, setActiveTab] = useState('login');
 
     return (
         <div className={'Authorization-component authorization'}>
@@ -13,18 +13,18 @@ function Authorization(props) {
                 </div>
                 <div className="authorization__window">
                     <ul className="authorization__tabs">
-                        <li onClick={()=>setActiveTab('login')}
-                            className={'authorization-tabs__item' + ((activeTab==='login') ? ' _active': '')}
+                        <li onClick={() => setActiveTab('login')}
+                            className={'authorization-tabs__item' + ((activeTab === 'login') ? ' _active' : '')}
                         >
                             <Link to={'login'} className="authorization-tabs__link">Login</Link>
                         </li>
-                        <li onClick={()=>setActiveTab('reg')}
-                            className={"authorization-tabs__item" + ((activeTab==='reg') ? ' _active': '')}
+                        <li onClick={() => setActiveTab('reg')}
+                            className={"authorization-tabs__item" + ((activeTab === 'reg') ? ' _active' : '')}
                         >
                             <Link to={'reg'} className="authorization-tabs__link">Registration</Link>
                         </li>
                     </ul>
-                    <Outlet />
+                    <Outlet/>
                 </div>
             </div>
             <div className="authorization__background">

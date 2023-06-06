@@ -1,35 +1,14 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import './Message.scss';
 import {useDispatch, useSelector} from "react-redux";
-import {addManyUserAction} from "../../../../assets/store/usersReducer";
-import {addMessage} from "../../../../assets/store/messagesReduceer";
+import {addManyMessages, addMessage, updateMessages} from "../../../../assets/store/messagesReducer";
+import {setCurrentCompanion} from "../../../../assets/store/currentCompanionReducer";
 
-function Message() {
-    let dispatch = useDispatch();
-    let user = useSelector(store => store.usersReducer.users[0]);
-    let companion = useSelector(store => store.usersReducer.users[1]);
-    let [chat, setChat] = useState({});
+function Message(props) {
+    let user = props.user;
+    let companion = props.companion;
+    let messages = props.messages;
 
-    useEffect(() => getChat(), []);
-
-    function getChat() {
-        fetch('http://localhost:3001/chats/1', {
-            method: "GET"
-        }).then(response => {
-            if (response.ok) {
-                return response.json();
-            } else {
-                console.log("Can't get chat");
-            }
-        }).then(jsonChat => {
-            if (Object.keys(jsonChat).length === 0) return;
-            // Сортируем чат по последним сообщениям
-            sortByDateLastMessage(jsonChat.messages);
-            setChat(jsonChat);
-            // Обновляем данные по сообщениям в хранилище store
-            dispatch(addMessage(jsonChat.messages));
-        }).catch(ex => console.log(ex));
-    }
     function sortByDateLastMessage(messages) {
         messages.forEach(message => {
             let number = Date.parse(message.date)
@@ -40,12 +19,15 @@ function Message() {
             return b.date - a.date
         });
     }
+
     function getDate(date) {
         return (date.toLocaleTimeString().slice(0, -3) + " " + date.getFullYear());
     }
+
     function getFullName(user) {
         return user.name + " " + user.lastName;
     }
+
     function getPhoto(user) {
         if (user.photo) {
             return <img src={user.photo} alt=""></img>
@@ -53,10 +35,10 @@ function Message() {
             return <img src={"./img/stock.jpg"} alt=""></img>
         }
     }
+
     function getMessagesJSX() {
-        if (!chat || !chat.messages) return <li></li>
-        if (user === undefined || companion === undefined) return <li></li>
-        return chat.messages.map(message=>{
+        if (!user || !companion || !messages) return <li></li>
+        return messages.map(message => {
             if (message.sender === user.id) {
                 return <li key={message.date} className={"chat__item chat__item-me"}>
                     <div className="chat__person">
@@ -94,10 +76,60 @@ function Message() {
             }
         });
     }
+    function getEmptyMessagesJSX() {
+        return <li className={'chat-empty'}>
+            <div className="chat-empty__title">
+                <p>Chat is empty</p>
+                <p>Send a message first!</p>
+            </div>
+        </li>
+    }
 
-    return getMessagesJSX();
+    if (messages.length === 0) {return getEmptyMessagesJSX();}
+    else {return getMessagesJSX();}
 }
 
+export default Message;
+/*export default React.memo(Message,(prevProps, nextProps)=>{
+    console.log(prevProps);
+    console.log(nextProps);
+    if (prevProps.messages.length !== nextProps.messages) {
+        console.log('Here');
+        return false;
+    }
+    if (Object.keys(prevProps.user).length !== Object.keys(nextProps.user).length) {
+        console.log('Here');
+        return false;
+    }
+    if (Object.keys(prevProps.companion).length !== Object.keys(nextProps.companion).length) {
+        console.log('Here');
+        return false;
+    }
+    if ('id' in prevProps.user) {
+        console.log('Here');
+        if (prevProps.user.id !== nextProps.user.id) {
+            console.log('Here');
+            return false;
+        }
+    } else {
+        if (prevProps.user !== nextProps.user) {
+            console.log('Here');
+            return false;
+        }
+    }
+    if ('id' in prevProps.companion) {
+        if (prevProps.companion.id !== nextProps.companion.id) {
+            console.log('Here');
+            return false;
+        }
+    } else {
+        if (prevProps.companion !== nextProps.companion) {
+            console.log('Here');
+            return false;
+        }
+    }
+    return true;
+});*/
 /*function newChat(chat) {
     if (chat === undefined || Object.keys(chat).length === 0) return <li></li>
     if (chat.length === 0) return <li></li>
@@ -272,5 +304,3 @@ function updateUser(user, setUserFunc) {
     if (Object.keys(user).length <= 0) return;
     setUserFunc(user);
 }*/
-
-export default Message;
